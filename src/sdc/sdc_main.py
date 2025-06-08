@@ -10,6 +10,9 @@ from jax.numpy import linalg as la
 SIM_TIME_STEP = 1.0 / 120.0
 MAX_TICKS = 2400
 BALL_RADIUS = 0.25
+ELEVATION = 35.0
+AZIMUTH = 30.0
+
 # Ref: https://www.thrustcurve.org/motors/AeroTech/M685W/
 THRUST_CURVE = {
     "time": (0.083, 0.13, 0.249, 0.308, 0.403, 0.675, 1.018, 1.456, 1.977, 2.995, 3.99, 4.985, 5.494, 5.991, 7.258, 7.862, 8.015, 8.998, 9.993, 10.514, 11.496, 11.994),
@@ -64,7 +67,7 @@ class WindData(el.Archetype):
 
 @el.map
 def sample_angles(_t: ThrustDirection) -> ThrustDirection:
-    return jnp.array([45, 90])
+    return jnp.array([ELEVATION, AZIMUTH])
 
 
 @el.map
@@ -157,7 +160,7 @@ def world(seed: int = 0) -> el.World:
             ),
             el.Shape(geometry, color),
             WindData(seed=jnp.int64(seed)),
-            ThrustData(direction=jnp.array([35.0, 30.0])),
+            ThrustData(direction=jnp.array([ELEVATION, AZIMUTH])),
         ],
         name="Warhead",
     )
