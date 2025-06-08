@@ -25,7 +25,8 @@ classifiers = [
     "Programming Language :: Python :: 3"
 ]
 dependencies = [
-    "elodin==0.14.1"
+    "elodin==0.14.1",
+    "pre-commit>=4.0.0"
 ]
 
 [project.scripts]
