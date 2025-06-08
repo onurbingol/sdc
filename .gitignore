@@ -1,0 +1,12 @@
+.vs*/*
+bin/*
+build/*
+wheelhouse/*
+dist/*
+examples/*
+*.egg-info/
+__pycache__/*
+
+*.pyc
+.DS_store
+.python-version

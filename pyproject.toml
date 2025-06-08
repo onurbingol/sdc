@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sdc"
+version = "0.1.0"
+description = "SD Challenge"
+license = "Unlicense"
+license-files = ["LICEN[CS]E*"]
+authors = [
+    { "name" = "Onur Bingol", "email" = "contact@onurbingol.net" }
+]
+maintainers = [
+    { "name" = "Onur Bingol", "email" = "contact@onurbingol.net" }
+]
+keywords = ["elodin", "physics", "simulation"]
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">= 3.12"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3"
+]
+dependencies = [
+    "elodin==0.14.1"
+]
+
+[project.scripts]
+sdc = "sdc.cli_main:run_cli"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["sdc"]
