@@ -7,11 +7,15 @@ from jax import numpy as jnp
 from jax import random
 from jax.numpy import linalg as la
 
-SIM_TIME_STEP = 1.0 / 120.0
-MAX_TICKS = 2400
+# Input configuration
+PAYLOAD = 50.0
 BALL_RADIUS = 0.25
 ELEVATION = 35.0
 AZIMUTH = 30.0
+
+# Simulation settings
+SIM_TIME_STEP = 1.0 / 120.0
+MAX_TICKS = 2400
 
 # Ref: https://www.thrustcurve.org/motors/AeroTech/M685W/
 THRUST_CURVE = {
@@ -206,7 +210,7 @@ def world(seed: int = 0) -> el.World:
         [
             el.Body(
                 world_pos=el.SpatialTransform(linear=jnp.array([0.0, 0.0, 0.0])),
-                inertia=el.SpatialInertia(mass=jnp.array([50.0])),
+                inertia=el.SpatialInertia(mass=jnp.array([PAYLOAD])),
             ),
             el.Shape(geometry, color),
             WindData(seed=jnp.int64(seed)),
@@ -236,4 +240,5 @@ def system() -> el.System:
 
 
 if __name__ == "__main__":
+    # Run simulation
     world().run(system(), sim_time_step=SIM_TIME_STEP, max_ticks=MAX_TICKS)
